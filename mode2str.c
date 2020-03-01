@@ -4,8 +4,11 @@ char 	*mode2str(int mode)
 {
 	char	*str;
 
-	str = ft_strnew(16);
+	str = ft_strnew(11);
 	mode & 16384 ? (str[0] = 'd') : (str[0] = '-');
+	mode & 8192 ? (str[0] = 'c') : 0;
+	mode & 16384 && mode & 8192 ? (str[0] = 'b') : 0;
+
 	mode & 256 ? (str[1] = 'r') : (str[1] = '-');
 	mode & 128 ? (str[2] = 'w') : (str[2] = '-');
 	mode & 64 ? (str[3] = 'x') : (str[3] = '-');
@@ -15,6 +18,7 @@ char 	*mode2str(int mode)
 	mode & 4 ? (str[7] = 'r') : (str[7] = '-');
 	mode & 2 ? (str[8] = 'w') : (str[8] = '-');
 	mode & 1 ? (str[9] = 'x') : (str[9] = '-');
+	str[10] = ' ';
 //	mode & 512 ? (str[9] = 't') : 0;
 	return (str);
 }
