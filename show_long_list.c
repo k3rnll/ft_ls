@@ -21,7 +21,7 @@ void	show_long(DIR *dir, char *source, struct col_len *maxclen)
 	free(total_str);
 	while ((entry = readdir(dir)) != NULL)
 	{
-		if(g_flags.a == 0 && *(entry->d_name) == '.')
+		if (g_flags.a == 0 && *(entry->d_name) == '.')
 			continue;
 		file = ft_strjoin(source, entry->d_name);
 		stat(file, buff);
@@ -58,7 +58,7 @@ void	parse_source(DIR *dir, char *source, struct col_len *maxclen)
 	buff = (struct stat*)malloc(sizeof(struct stat));
 	while ((entry = readdir(dir)) != NULL)
 	{
-		if(g_flags.a == 0 && *(entry->d_name) == '.')
+		if (g_flags.a == 0 && *(entry->d_name) == '.')
 			continue;
 		file = ft_strjoin(source, entry->d_name);
 		stat(file, buff);
@@ -72,6 +72,7 @@ void	parse_source(DIR *dir, char *source, struct col_len *maxclen)
 	free(buff);
 }
 
+
 void	flush_maxclen(col_len *maxclen)
 {
 	maxclen->links = 0;
@@ -81,6 +82,35 @@ void	flush_maxclen(col_len *maxclen)
 	maxclen->maj_len = 0;
 	maxclen->min_len = 0;
 	maxclen->total = 0;
+}
+
+
+void	rec_long_list(DIR *dir, char *source)
+{
+	struct dirent	*entry;
+	char			*file;
+
+	while ((entry = readdir(dir)) != NULL)
+	{
+		if (g_flags.a == 0 && *(entry->d_name) == '.')
+			continue;
+		file = ft_strjoin(source, entry->d_name);
+		if (g_flags.R == 1)
+		{
+			if (ft_strcmp(entry->d_name, ".") && \
+			ft_strcmp(entry->d_name, ".."))
+			{
+				if (entry->d_type == 4)
+				{
+					write(1, "\n", 1);
+					ft_putstr(file);
+					write(1, ":\n", 2);
+					show_long_list(file);
+				}
+			}
+		}
+		free(file);
+	}
 }
 
 int		show_long_list(char *av)
@@ -103,6 +133,9 @@ int		show_long_list(char *av)
 	closedir(dir);
 	dir = opendir(source);
 	show_long(dir, source, maxclen);
+	closedir(dir);
+	dir = opendir(source);
+	rec_long_list(dir, source);
 	closedir(dir);
 	free(maxclen);
 	free(source);

@@ -21,12 +21,11 @@ void	rec_short_list(char *source, struct dirent *entry)
 
 void	show_short(DIR *dir)
 {
-//	char 			*file;
 	struct dirent	*entry;
 
 	while ((entry = readdir(dir)) != NULL)
 	{
-		if(g_flags.a == 0 && *(entry->d_name) == '.')
+		if (g_flags.a == 0 && *(entry->d_name) == '.')
 			continue;
 		ft_putstr(entry->d_name);
 		write(1, "\t", 1);
@@ -41,10 +40,10 @@ void	parse_short(DIR *dir, char *source)
 
 	while ((entry = readdir(dir)) != NULL)
 	{
-		if(g_flags.a == 0 && *(entry->d_name) == '.')
+		if (g_flags.a == 0 && *(entry->d_name) == '.')
 			continue;
 		file = ft_strjoin(source, entry->d_name);
-		if(g_flags.R == 1)
+		if (g_flags.R == 1)
 			rec_short_list(file, entry);
 		free(file);
 	}
