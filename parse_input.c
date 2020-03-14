@@ -3,6 +3,8 @@
 
 int 	check_flags(char *str)
 {
+	if (!str)
+		return (0);
 	if (ft_strlen(str) > 1 && *str == '-')
 	{
 		while (*str++)

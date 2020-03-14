@@ -10,7 +10,7 @@
 #include "libft/libft.h"
 #include "include/ft_ls.h"
 
-
+/*
 void	ft_recur(char *file, struct dirent *entry)
 {
 	if (ft_strcmp(entry->d_name, ".") && \
@@ -20,7 +20,8 @@ void	ft_recur(char *file, struct dirent *entry)
 			ft_ls(file);
 	}
 }
-
+*/
+/*
 int	ft_ls(char *av)
 {
 	DIR				*dir;
@@ -126,14 +127,55 @@ int	ft_ls(char *av)
 	}
 	return (1);
 }
+*/
 
 int 	main(int ac, char **av)
 {
-	int 			i;
+	int 	i;
+	char 	*source;
 
-	i = 0;
+	i = 1;
 	if (ac == 1)
-		ft_ls(get_root(av[i]));
+	{
+		source = get_root(av[0]);
+		show_short_list(source);
+		free(source);
+		return (0);
+	}
+	while (check_flags(av[i]))
+		i++;
+	if (i == ac)
+	{
+		source = get_root(av[0]);
+		if (g_flags.l)
+			show_long_list(source);
+		else
+			show_short_list(source);
+		free(source);
+	}
+	if (i + 1 == ac)
+	{
+		if (g_flags.l)
+			show_long_list(av[i]);
+		else
+			show_short_list(av[i]);
+		return(0);
+	}
+	while (i < ac)
+	{
+		ft_putstr(av[i]);
+		write(1, ":\n", 2);
+		if (g_flags.l)
+			show_long_list(av[i]);
+		else
+			show_short_list(av[i]);
+		i++;
+		if(i != ac)
+			write(1, "\n", 1);
+	}
+
+
+	/*
 	if (ac == 2 && check_flags(av[1]))
 	{
 		ft_ls(get_root(av[i]));
@@ -161,5 +203,6 @@ int 	main(int ac, char **av)
 				write(1, "\n", 1);
 		}
 	}
+	 */
 	return (0);
 }

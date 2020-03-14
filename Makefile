@@ -3,10 +3,10 @@ FLAGS = -Wall -Wextra -Werror
 LIB = libft/libft.a
 SRC = first_colon.c ft_numlen.c main.c maj_min_len.c major.c minor.c \
 	mode2str.c second_colon.c time2str.c parse_input.c get_source.c \
-	put_error.c
+	put_error.c show_short_list.c show_long_list.c
 OBJ = main.o first_colon.o second_colon.o ft_numlen.o maj_min_len.o \
 	major.o minor.o mode2str.o time2str.o parse_input.o get_source.o \
-	put_error.o
+	put_error.o show_short_list.o show_long_list.o
 HDRS = include/ft_ls.h
 NAME = ft_ls
 
@@ -42,6 +42,10 @@ get_source.o: get_source.c
 	$(CC) $(FLAGS) -c get_source.c
 put_error.o: put_error.c
 	$(CC) $(FLAGS) -c put_error.c
+show_long_list.o: show_long_list.c
+	$(CC) $(FLAGS) -c show_long_list.c
+show_short_list.o: show_short_list.c
+	$(CC) $(FLAGS) -c show_short_list.c
 
 clean:
 	rm -f $(OBJ)

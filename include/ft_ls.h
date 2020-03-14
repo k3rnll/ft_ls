@@ -11,6 +11,7 @@ typedef struct		col_len
 	int 			group;
 	int 			maj_len;
 	int 			min_len;
+	int 			total;
 }			col_len;
 
 int			ft_ls(char *av);
@@ -22,7 +23,8 @@ char 		*mode2str(int mode);
 char 		*time2str(const time_t *time);
 void		show_list(char *file);
 void		put_error(char flag);
-
+int 		show_long_list(char *av);
+int			show_short_list(char *av);
 
 long long	ft_numlen(long long n);
 long long	ft_itoa_ll(long long n);
