@@ -2,7 +2,7 @@
 #include <grp.h>
 
 #include "libft/libft.h"
-#include "ft_ls.h"
+#include "include/ft_ls.h"
 
 void	second_colon(struct stat *buff, struct col_len *maxlen, char *source)
 {
@@ -14,7 +14,7 @@ void	second_colon(struct stat *buff, struct col_len *maxlen, char *source)
 	char 			*min;
 
 	group = getgrgid(buff->st_gid)->gr_name;
-	size = ft_itoa_ll(buff->st_size);
+	size = (char*)ft_itoa_ll(buff->st_size);
 	time = time2str(&buff->st_ctimespec.tv_sec);
 
 	len = maxlen->group - ft_strlen(group);

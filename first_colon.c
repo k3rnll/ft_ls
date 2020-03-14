@@ -2,13 +2,9 @@
 #include <pwd.h>
 
 #include "libft/libft.h"
-#include "ft_ls.h"
+#include "include/ft_ls.h"
 
-// 11 chars for attr
-// any chars for links 16-32
-// any chars for username 20 - 32 char
-
-void	first_colon(struct stat *buff, struct col_len *maxlen)
+void	first_colon(struct stat *buff, col_len *maxlen)
 {
 	char 	*attr;
 	char	*links;

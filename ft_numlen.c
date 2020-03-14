@@ -1,6 +1,6 @@
 #include "libft/libft.h"
 
-unsigned long long	ft_numlen(unsigned long long n)
+long long	ft_numlen(unsigned long long n)
 {
 	int		len;
 
@@ -14,9 +14,9 @@ unsigned long long	ft_numlen(unsigned long long n)
 	return (len);
 }
 
-char		*ft_itoa_ll(unsigned long long n)
+char		*ft_itoa_ll(long long n)
 {
-	unsigned long long	len;
+	long long	len;
 	char		*str;
 
 	len = ft_numlen(n);

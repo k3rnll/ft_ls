@@ -1,5 +1,5 @@
 #include <sys/stat.h>
-#include "ft_ls.h"
+#include "include/ft_ls.h"
 
 void 	maj_min_len(struct stat *buff, struct col_len *maxlen)
 {
